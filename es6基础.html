@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{width: 200px;height: 200px;background: #ccc;float: left;margin: 10px;}
+    </style>
+</head>
+<body>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <script>
+        window.onload=function(){
+            let a=[1,2,3,4,5,6]
+            let b= a.map(item=>item>=3)
+            // alert(b)
+            let c= a.filter(item=>item%2)
+            // alert(c)
+            let d=0
+                c.forEach(item=>{
+                    d+=item
+                })
+            // alert(d)
+            let e = a.reduce((tmp,item,index)=>{
+                //console.log(arguments.length) 不能用,规定的
+                if(index<a.length-1){
+                    return tmp+item
+                }else{
+                    return (tmp+item)/a.length
+                }
+            })
+            console.log(e)
+        
+            let aDiv=document.getElementsByTagName("div");
+            // aDiv.forEach(div=>{div.style.background="#f0f"})
+            // 不能执行 原因是aDiv是一个 类数组 array.like
+            Array.from(aDiv).forEach(div=>{div.style.background="#f0f"})
+            
+            // let json={name:"jack",age:12}
+            // alert(`我叫${json.name},
+            // 今年${json.age}岁`)
+
+
+
+            class Person{
+                constructor(name,age){
+                    this.name=name;
+                    this.age=age;
+                }
+                showName(){
+                    alert(`我叫${this.name},我今年${this.age}岁`)
+                }
+            }
+            let person=new Person("jack",12)
+            // person.showName()
+            
+            class Worker extends Person{
+                constructor(name,age,job){
+                    super(name,age) //超类(父类) call apply
+                    this.job=job
+                }
+                showJob(){
+                    alert(`我是做${this.job}的`)
+                }
+            }
+            
+            let worker=new Worker("jack",12,"保洁")
+            worker.showName()
+            worker.showJob()
+            }
+        
+    </script>
+</body>
+</html>
